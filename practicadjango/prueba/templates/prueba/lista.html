@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}"/>
+    <script type="text/javascript" src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script type="text/javascript"  src="{% static 'js/bootstrap.bundle.js' %}"></script>
+</head>
+<body>
+{% if lista_personas %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Ciudad</th>
+            <th>Edad</th>
+            <th>Fecha de Nacimiento</th>
+            <th>Email</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for persona in lista_personas %}
+            <tr>
+                <td>{{ persona.id }}</td>
+                <td>{{ persona.nombres }}</td>
+                <td>{{ persona.apellidos }}</td>
+                <td>{{ persona.ciudad }}</td>
+                <td>{{ persona.edad }}</td>
+                <td>{{ persona.fecha_nacimiento }}</td>
+                <td>{{ persona.email }}</td>
+                <td><a href="/prueba/personas/{{ persona.id }}">Editar</a></td>
+                <td><a onclick="return confirm('¿Está seguro que desea eliminar?')"
+                       href="/prueba/personas/{{ persona.id }}/delete">Eliminar</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+</body>
+</html>
